@@ -1,6 +1,6 @@
 # address-book
 
-GRANT ALL ON laravel.* TO 'laraveluser'@'%' IDENTIFIED BY 'your_laravel_db_password';
+GRANT ALL ON laravel.* TO 'laraveluser'@'%' IDENTIFIED BY 'testtest';
 FLUSH PRIVILEGES;
 
 
