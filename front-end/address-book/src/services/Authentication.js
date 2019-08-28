@@ -9,7 +9,7 @@ export const Authentication = {
 };
 
 async function login(values, callback) {
-    return await fetch('http://localhost/api/auth/login', Api.getOptions('POST', values))
+    return await fetch('http://address-book/api/auth/login', Api.getOptions('POST', values))
         .then(response => {
             if (response.status !== 200) {
                 throw new Error(response.status);
@@ -27,7 +27,7 @@ async function login(values, callback) {
 
 async function refresh() {
     if (localStorage.getItem('token') !== null) {
-        return await fetch('http://localhost/api/auth/refresh', Api.getOptions('GET'))
+        return await fetch('http://address-book/api/auth/refresh', Api.getOptions('GET'))
             .then(response => {
                 if (response.status !== 200) {
                     throw new Error(response.status);

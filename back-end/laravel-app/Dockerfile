@@ -42,6 +42,8 @@ RUN apt-get update && apt-get -y install cron
 # Copy existing application directory contents
 COPY . /var/www
 
+CMD php artisan migrate:fresh--seed
+
 # Copy existing application directory permissions
 COPY --chown=www:www . /var/www
 

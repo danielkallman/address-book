@@ -5,7 +5,7 @@ export const User = {
 };
 
 async function getUser() {
-    return await fetch('http://localhost/api/user', Api.getOptions('GET'))
+    return await fetch('http://address-book/api/user', Api.getOptions('GET'))
         .then(response => {
             if (response.status !== 200) {
                 throw new Error(response.status);

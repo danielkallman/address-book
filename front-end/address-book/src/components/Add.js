@@ -17,7 +17,7 @@ const Add = (props) => {
 
             if (isValid ) {
                 values.pathToImage = file;
-                fetch('http://localhost/api/addressbook', Api.getOptions('POST', values))
+                fetch('http://address-book/api/addressbook', Api.getOptions('POST', values))
                     .then(response => {
                         if (response.status !== 201) {
                             throw new Error(response.status);

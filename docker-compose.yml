@@ -1,6 +1,5 @@
 version: '3'
 services:
-
   #PHP Service
   app:
     build: ./back-end/laravel-app
@@ -19,19 +18,18 @@ services:
       - app-network
 
   #Nginx Service
-  webserver:
+  backend:
     image: nginx:alpine
-    container_name: webserver
+    container_name: backend
     restart: unless-stopped
     tty: true
-    ports:
-      - "80:80"
-      - "443:443"
     volumes:
       - ./back-end/laravel-app:/var/www
       - ./back-end/laravel-app/nginx/conf.d/:/etc/nginx/conf.d/
     networks:
       - app-network
+    expose:
+      - "80"
 
   #MySQL Service
   db:
@@ -49,19 +47,33 @@ services:
     volumes:
       - dbdata:/var/lib/mysql/
       - ./back-end/laravel-app/mysql/my.cnf:/etc/mysql/my.cnf
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
     networks:
       - app-network
 
-  front-end:
+  frontend:
+    container_name: frontend
     build: ./front-end/address-book
     volumes:
-      - .:/app
+      - ./front-end/address-book:/app
       - /app/node_modules
-    ports:
-      - "8080:80"
     networks:
       - app-network
+    expose:
+      - "80"
 
+#Proxy service
+  proxy:
+    image: nginx:latest
+    container_name: proxy
+    volumes:
+      - ./proxy/default.conf:/etc/nginx/nginx.conf
+#      - ./proxy/error.log/:/etc/nginx/error_log.log
+    ports:
+      - 80:80
+      - 443:443
+    networks:
+      - app-network
 
 #Docker Networks
 networks:
