@@ -15,7 +15,7 @@ const Contact = () => {
     const [user, setUser] = useState(false);
 
     const getContacts = () => {
-        fetch('http://address-book/api/addressbook', Api.getOptions('GET'))
+        fetch('http://address-book.local/api/addressbook', Api.getOptions('GET'))
             .then(response => {
                 if (response.status !== 200) {
                     throw new Error(response.status);
@@ -36,7 +36,7 @@ const Contact = () => {
 
     const handlePageChange = (pageNumber) => {
         setIsLoaded(false);
-        fetch('http://address-book/api/addressbook?page=' + pageNumber, Api.getOptions('GET'))
+        fetch('http://address-book.local/api/addressbook?page=' + pageNumber, Api.getOptions('GET'))
             .then(response => {
                 if (response.status !== 200) {
                     throw new Error(response.status);

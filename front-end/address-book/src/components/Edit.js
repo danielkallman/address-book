@@ -14,7 +14,7 @@ const Edit = (props) => {
     }
 
     const getItem = () => {
-        fetch('http://address-book/api/addressbook/' + props.match.params.id, Api.getOptions())
+        fetch('http://address-book.local/api/addressbook/' + props.match.params.id, Api.getOptions())
             .then(response => {
                 if (response.status !== 200) {
                     throw new Error(response.status);
@@ -40,7 +40,7 @@ const Edit = (props) => {
             }
             
             const id = props.match.params.id;
-            fetch('http://address-book/api/addressbook/' + id, Api.getOptions('PUT', values))
+            fetch('http://address-book.local/api/addressbook/' + id, Api.getOptions('PUT', values))
                 .then(response => {
                     if (response.status !== 200) {
                         throw new Error(response.status);
